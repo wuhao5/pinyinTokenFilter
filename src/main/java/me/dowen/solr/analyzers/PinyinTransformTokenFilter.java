@@ -203,6 +203,7 @@ public class PinyinTransformTokenFilter extends TokenFilter {
 		Set<String> pinyins = null;
 		for (String[] array : pinyinList) {
 			if (pinyins == null || pinyins.isEmpty()) {
+				pinyins = new HashSet<String>();
 				for (String charPinpin : array) {
 					pinyins.add(charPinpin.substring(0, 1));
 				}
