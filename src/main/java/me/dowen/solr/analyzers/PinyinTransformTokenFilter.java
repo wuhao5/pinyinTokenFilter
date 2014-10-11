@@ -200,12 +200,14 @@ public class PinyinTransformTokenFilter extends TokenFilter {
 				pinyinList.add(pinyinArray);
 			}
 		}
+		Set<String> sorts=new HashSet<String>();
 		Set<String> pinyins = null;
 		for (String[] array : pinyinList) {
 			if (pinyins == null || pinyins.isEmpty()) {
 				pinyins = new HashSet<String>();
 				for (String charPinpin : array) {
 					pinyins.add(charPinpin.substring(0, 1));
+					sorts.add(charPinpin.substring(0, 1));
 				}
 			} else {
 				Set<String> pres = pinyins;
@@ -213,11 +215,12 @@ public class PinyinTransformTokenFilter extends TokenFilter {
 				for (String pre : pres) {
 					for (String charPinyin : array) {
 						pinyins.add(pre + charPinyin.substring(0, 1));
+						sorts.add(pre + charPinyin.substring(0, 1));
 					}
 				}
 			}
 		}
-		return pinyins;
+		return sorts;
 	}
 
 	public void reset() throws IOException {
