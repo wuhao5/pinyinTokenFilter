@@ -157,8 +157,8 @@ public class PinyinTransformTokenFilter extends TokenFilter {
 				//有中文且符合长度限制
 				try {
 					// 输出拼音（缩写或全拼）
-					this.terms = this.firstChar ? getPyShort(chinese)
-							: GetPyString(chinese);
+					this.terms = getPyShort(chinese);
+					this.terms.addAll(GetPyString(chinese));
 					if (this.terms != null) {
 						this.termIte = this.terms.iterator();
 					}
